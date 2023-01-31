@@ -7,8 +7,7 @@ function App() {
 	const tasks: Array<TaskType> = [
 		{ id: 1, title: 'HTML & CSS', isDone: true },
 		{ id: 2, title: 'JavaScript', isDone: true },
-		{ id: 3, title: 'React & TS', isDone: false },
-		{ id: 4, title: 'Redux', isDone: false },
+		{ id: 3, title: 'React & TS', isDone: false }
 	]
 	return (
 		<div className="App">
