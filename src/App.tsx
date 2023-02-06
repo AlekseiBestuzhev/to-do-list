@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Todolist, { TaskType } from "./TodoList";
 
@@ -12,11 +12,13 @@ function App() {
 		{ id: 3, title: 'React & TS', isDone: false },
 		{ id: 4, title: 'Redux', isDone: false },
 	]
-	let filteredTasks: TaskType[] = tasks;
-	let filter: FilterValueType = 'all';
-	if (filter === 'all') {
-		filteredTasks = tasks;
-	}
+
+	const [filter, setFilter] = useState<FilterValueType>('all');
+
+	let filteredTasks: TaskType[] = [];
+
+
+
 	if (filter === 'active') {
 		filteredTasks = tasks.filter(elem => elem.isDone === false);
 	}
