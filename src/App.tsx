@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Todolist, { TaskType } from "./TodoList";
 
+type FilterValueType = 'all' | 'active' | 'completed';
+
 function App() {
 	const toDoListTitle = 'What to learn?';
 	const tasks: Array<TaskType> = [
@@ -10,9 +12,20 @@ function App() {
 		{ id: 3, title: 'React & TS', isDone: false },
 		{ id: 4, title: 'Redux', isDone: false },
 	]
+	let filteredTasks: TaskType[] = tasks;
+	let filter: FilterValueType = 'all';
+	if (filter === 'all') {
+		filteredTasks = tasks;
+	}
+	if (filter === 'active') {
+		filteredTasks = tasks.filter(elem => elem.isDone === false);
+	}
+	if (filter === 'completed') {
+		filteredTasks = tasks.filter(elem => elem.isDone === true);
+	}
 	return (
 		<div className="App">
-			<Todolist title={toDoListTitle} tasks={tasks} />
+			<Todolist title={toDoListTitle} tasks={filteredTasks} />
 		</div>
 	);
 }
