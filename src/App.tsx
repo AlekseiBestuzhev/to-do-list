@@ -6,12 +6,17 @@ export type FilterValueType = 'all' | 'active' | 'completed';
 
 function App() {
 	const toDoListTitle = 'What to learn?';
-	const tasks: Array<TaskType> = [
+	const [tasks, setTasks] = useState<Array<TaskType>>([
 		{ id: 1, title: 'HTML & CSS', isDone: true },
 		{ id: 2, title: 'JavaScript', isDone: true },
 		{ id: 3, title: 'React & TS', isDone: false },
 		{ id: 4, title: 'Redux', isDone: false },
-	]
+	])
+
+	const removeTask = (taskId: number) => {
+		const updatedTasks = tasks.filter(elem => elem.id !== taskId);
+		setTasks(updatedTasks);
+	}
 
 	const [filter, setFilter] = useState<FilterValueType>('all');
 
@@ -36,7 +41,8 @@ function App() {
 			<Todolist
 				title={toDoListTitle}
 				tasks={filteredTasks}
-				changeFilterValue={changeFilterValue} />
+				changeFilterValue={changeFilterValue}
+				removeTask={removeTask} />
 		</div>
 	);
 }
