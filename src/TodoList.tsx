@@ -33,7 +33,8 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 		}
 		setTitle('');
 	}
-	const onKeyDownAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask()
+	const onKeyDownAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask();
+	const changeFilterValue = (filter: FilterValueType) => () => props.changeFilterValue(filter);
 	return (
 		<div className={"todolist"}>
 			<h3>{props.title}</h3>
@@ -49,9 +50,9 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 			</div>
 			<TasksList tasks={props.tasks} removeTask={props.removeTask} />
 			<div>
-				<button onClick={() => props.changeFilterValue('all')}>All</button>
-				<button onClick={() => props.changeFilterValue('active')}>Active</button>
-				<button onClick={() => props.changeFilterValue('completed')}>Completed</button>
+				<button onClick={changeFilterValue('all')}>All</button>
+				<button onClick={changeFilterValue('active')}>Active</button>
+				<button onClick={changeFilterValue('completed')}>Completed</button>
 			</div>
 		</div>
 	);
