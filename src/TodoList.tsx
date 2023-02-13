@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, RefObject, useRef } from 'react';
 import { FilterValueType } from './App';
 import TasksList from './TasksList';
 
@@ -17,12 +17,19 @@ export type TaskType = {
 }
 
 const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
+	const addTaskInput: RefObject<HTMLInputElement> = useRef(null);
+	const addTask = () => {
+		if (addTaskInput.current) {
+			props.addTask(addTaskInput.current.value);
+			addTaskInput.current.value = '';
+		}
+	}
 	return (
 		<div className={"todolist"}>
 			<h3>{props.title}</h3>
 			<div>
-				<input />
-				<button onClick={() => { props.addTask('New task') }}>+</button>
+				<input ref={addTaskInput} />
+				<button onClick={addTask}>+</button>
 			</div>
 			<TasksList tasks={props.tasks} removeTask={props.removeTask} />
 			<div>
