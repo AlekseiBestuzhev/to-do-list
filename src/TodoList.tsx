@@ -33,11 +33,13 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 		}
 		setTitle('');
 	}
+	const onKeyDownAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask()
 	return (
 		<div className={"todolist"}>
 			<h3>{props.title}</h3>
 			<div>
 				<input
+					onKeyDown={onKeyDownAddTask}
 					value={title}
 					onChange={changeLocalTitle} />
 				<button disabled={!title.length} onClick={addTask}>+</button>
