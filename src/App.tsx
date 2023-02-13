@@ -30,21 +30,21 @@ function App() {
 
 	const [filter, setFilter] = useState<FilterValueType>('all');
 
-	let filteredTasks: TaskType[] = [];
+	const changeFilterValue = (filter: FilterValueType) => setFilter(filter);
 
-	const changeFilterValue = (filter: FilterValueType) => {
-		setFilter(filter);
+	const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
+		let filteredTasks: TaskType[] = [];
+		switch (filter) {
+			case 'active':
+				return tasks.filter(elem => elem.isDone === false);
+			case 'completed':
+				return tasks.filter(elem => elem.isDone === true);
+			default:
+				return tasks;
+		}
 	}
 
-	if (filter === 'all') {
-		filteredTasks = tasks;
-	}
-	if (filter === 'active') {
-		filteredTasks = tasks.filter(elem => elem.isDone === false);
-	}
-	if (filter === 'completed') {
-		filteredTasks = tasks.filter(elem => elem.isDone === true);
-	}
+	const filteredTasks: TaskType[] = getFilteredTasks(tasks, filter);
 
 	return (
 		<div className="App">

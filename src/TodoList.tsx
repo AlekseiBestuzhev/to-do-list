@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, RefObject, useRef, useState } from 'react';
 import { FilterValueType } from './App';
 import TasksList from './TasksList';
 
@@ -25,8 +25,12 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 	// 	}
 	// }
 	const [title, setTitle] = useState<string>('');
+	const changeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value);
 	const addTask = () => {
-		props.addTask(title);
+		const trimmedTitle = title.trim();
+		if (trimmedTitle) {
+			props.addTask(title);
+		}
 		setTitle('');
 	}
 	return (
@@ -35,7 +39,7 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 			<div>
 				<input
 					value={title}
-					onChange={(e) => setTitle(e.currentTarget.value)} />
+					onChange={changeLocalTitle} />
 				<button disabled={!title.length} onClick={addTask}>+</button>
 				{title.length > 15 && <span style={{ color: 'red' }}>Too long</span>}
 				{/* <input ref={addTaskInput} />
