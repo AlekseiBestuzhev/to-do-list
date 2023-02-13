@@ -25,13 +25,19 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 	// 	}
 	// }
 	const [title, setTitle] = useState<string>('');
+	const addTask = () => {
+		props.addTask(title);
+		setTitle('');
+	}
 	return (
 		<div className={"todolist"}>
 			<h3>{props.title}</h3>
 			<div>
-				<input onChange={(e) => setTitle(e.currentTarget.value)} />
-				<button onClick={() => { }}>+</button>
-				{title.length > 15 && <span>Too long</span>}
+				<input
+					value={title}
+					onChange={(e) => setTitle(e.currentTarget.value)} />
+				<button disabled={!title.length} onClick={addTask}>+</button>
+				{title.length > 15 && <span style={{ color: 'red' }}>Too long</span>}
 				{/* <input ref={addTaskInput} />
 				<button onClick={addTask}>+</button> */}
 			</div>
