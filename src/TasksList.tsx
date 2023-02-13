@@ -3,7 +3,7 @@ import { TaskType } from "./TodoList";
 
 type TasksListPropsType = {
 	tasks: TaskType[],
-	removeTask: (taskId: number) => void
+	removeTask: (taskId: string) => void
 }
 
 const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
