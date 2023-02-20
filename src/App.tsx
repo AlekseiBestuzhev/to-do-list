@@ -14,6 +14,10 @@ function App() {
 		{ id: v1(), title: 'Redux', isDone: false },
 	])
 
+	const changeTaskStatus = (taskId: string) => {
+		setTasks(tasks.map((t) => t.id === taskId ? { ...t, isDone: !t.isDone } : t))
+	}
+
 	const removeTask = (taskId: string) => {
 		const updatedTasks = tasks.filter(elem => elem.id !== taskId);
 		setTasks(updatedTasks);
