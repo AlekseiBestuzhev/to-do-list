@@ -19,7 +19,7 @@ const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
 						<input type="checkbox"
 							checked={task.isDone}
 							onChange={changeTaskStatus} />
-						<span>{task.title}</span>
+						<span className={`task ${task.isDone ? 'task-done' : ''}`}>{task.title}</span>
 						<button onClick={removeTask}>x</button>
 					</li>
 				)
