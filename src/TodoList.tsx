@@ -7,7 +7,8 @@ type TodoListPropsType = {
 	tasks: TaskType[],
 	changeFilterValue: (filter: FilterValueType) => void,
 	removeTask: (taskId: string) => void,
-	addTask: (title: string) => void
+	addTask: (title: string) => void,
+	changeTaskStatus: (taskId: string) => void
 }
 
 export type TaskType = {
@@ -48,7 +49,9 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 				{/* <input ref={addTaskInput} />
 				<button onClick={addTask}>+</button> */}
 			</div>
-			<TasksList tasks={props.tasks} removeTask={props.removeTask} />
+			<TasksList tasks={props.tasks}
+				removeTask={props.removeTask}
+				changeTaskStatus={props.changeTaskStatus} />
 			<div>
 				<button onClick={changeFilterValue('all')}>All</button>
 				<button onClick={changeFilterValue('active')}>Active</button>
