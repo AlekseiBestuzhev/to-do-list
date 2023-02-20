@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import { TaskType } from "./TodoList";
 
 type TasksListPropsType = {
 	tasks: TaskType[],
 	removeTask: (taskId: string) => void,
-	changeTaskStatus: (taskId: string) => void
+	changeTaskStatus: (taskId: string, newIsDone: boolean) => void
 }
 
 const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
@@ -13,7 +13,7 @@ const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
 		props.tasks.length
 			? props.tasks.map((task) => {
 				const removeTask = () => props.removeTask(task.id);
-				const changeTaskStatus = () => props.changeTaskStatus(task.id);
+				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked);
 				return (
 					<li key={task.id}>
 						<input type="checkbox"
