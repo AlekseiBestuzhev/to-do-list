@@ -26,12 +26,18 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 	// 		addTaskInput.current.value = '';
 	// 	}
 	// }
+	const [error, setError] = useState<boolean>(false);
 	const [title, setTitle] = useState<string>('');
-	const changeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value);
+	const changeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
+		error && setError(false);
+		setTitle(e.currentTarget.value);
+	}
 	const addTask = () => {
 		const trimmedTitle = title.trim();
 		if (trimmedTitle) {
 			props.addTask(title);
+		} else {
+			setError(true);
 		}
 		setTitle('');
 	}
@@ -47,6 +53,7 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 					onChange={changeLocalTitle} />
 				<button disabled={!title.length} onClick={addTask}>+</button>
 				{title.length > 15 && <span style={{ color: 'red' }}>Too long</span>}
+				{error && <span style={{ color: 'red' }}>Title is required!</span>}
 				{/* <input ref={addTaskInput} />
 				<button onClick={addTask}>+</button> */}
 			</div>
