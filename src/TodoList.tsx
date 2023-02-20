@@ -8,7 +8,8 @@ type TodoListPropsType = {
 	changeFilterValue: (filter: FilterValueType) => void,
 	removeTask: (taskId: string) => void,
 	addTask: (title: string) => void,
-	changeTaskStatus: (taskId: string, newIsDone: boolean) => void
+	changeTaskStatus: (taskId: string, newIsDone: boolean) => void,
+	filter: FilterValueType
 }
 
 export type TaskType = {
@@ -53,9 +54,15 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 				removeTask={props.removeTask}
 				changeTaskStatus={props.changeTaskStatus} />
 			<div>
-				<button onClick={changeFilterValue('all')}>All</button>
-				<button onClick={changeFilterValue('active')}>Active</button>
-				<button onClick={changeFilterValue('completed')}>Completed</button>
+				<button
+					className={props.filter === 'all' ? 'active-filter-all' : ''}
+					onClick={changeFilterValue('all')}>All</button>
+				<button
+					className={props.filter === 'active' ? 'active-filter-active' : ''}
+					onClick={changeFilterValue('active')}>Active</button>
+				<button
+					className={props.filter === 'completed' ? 'active-filter-completed' : ''}
+					onClick={changeFilterValue('completed')}>Completed</button>
 			</div>
 		</div>
 	);

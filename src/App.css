@@ -15,3 +15,24 @@
 text-decoration: line-through;
 opacity: 0.5;
 }
+
+.active-filter-all {
+	background-color: chartreuse;
+	font-weight: bold;
+	color: #fff;
+	border: 2px solid chartreuse;
+}
+
+.active-filter-active {
+	background-color: #ff89d8;
+	font-weight: bold;
+	color: #fff;
+	border: 2px solid #ff89d8;
+}
+
+.active-filter-completed {
+	background-color: cyan;
+	font-weight: bold;
+	color: #fff;
+	border: 2px solid cyan;
+}
