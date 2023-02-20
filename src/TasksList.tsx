@@ -12,6 +12,8 @@ const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
 	const tasksItems: JSX.Element[] | JSX.Element =
 		props.tasks.length
 			? props.tasks.map((task) => {
+				const taskClasses = ['task'];
+				task.isDone && taskClasses.push('task-done')
 				const removeTask = () => props.removeTask(task.id);
 				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked);
 				return (
@@ -19,7 +21,7 @@ const TasksList: FC<TasksListPropsType> = (props): JSX.Element => {
 						<input type="checkbox"
 							checked={task.isDone}
 							onChange={changeTaskStatus} />
-						<span className={`task ${task.isDone ? 'task-done' : ''}`}>{task.title}</span>
+						<span className={taskClasses.join(' ')}>{task.title}</span>
 						<button onClick={removeTask}>x</button>
 					</li>
 				)
