@@ -43,17 +43,26 @@ const TodoList: FC<TodoListPropsType> = (props): JSX.Element => {
 	}
 	const onKeyDownAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask();
 	const changeFilterValue = (filter: FilterValueType) => () => props.changeFilterValue(filter);
+
+	const maxLengthMessage = 15;
+	const isUserMessageTooLong = title.length > maxLengthMessage;
+	const inputErrorClasses = error || title.length > 15 ? 'input-error' : '';
+	const userMaxLengthMessage = isUserMessageTooLong && <span style={{ color: 'red' }}>Too long</span>;
+	const titleIsRequiredMessage = error && <span style={{ color: 'red' }}>Title is required!</span>;
+	const isDisabled = !title.length;
 	return (
 		<div className={"todolist"}>
 			<h3>{props.title}</h3>
 			<div>
 				<input
+					className={inputErrorClasses}
 					onKeyDown={onKeyDownAddTask}
 					value={title}
 					onChange={changeLocalTitle} />
-				<button disabled={!title.length} onClick={addTask}>+</button>
-				{title.length > 15 && <span style={{ color: 'red' }}>Too long</span>}
-				{error && <span style={{ color: 'red' }}>Title is required!</span>}
+				<button disabled={isDisabled} onClick={addTask}>+</button>
+				{ }
+				{userMaxLengthMessage}
+				{titleIsRequiredMessage}
 				{/* <input ref={addTaskInput} />
 				<button onClick={addTask}>+</button> */}
 			</div>

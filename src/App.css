@@ -36,3 +36,11 @@ opacity: 0.5;
 	color: #fff;
 	border: 2px solid cyan;
 }
+
+.input-error {
+	border: 2px solid red;
+}
+
+.input-error:focus {
+	outline: 2px solid red;
+}
