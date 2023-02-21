@@ -21,7 +21,6 @@ type TodolistType = {
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const [error, setError] = React.useState<boolean>(false);
-	const inputErrorClasses = `input ${error ? 'errorInput' : ''}`;
 
 	const [title, setTitle] = React.useState('');
 	const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +43,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const maxLengthTitle: number = 15;
 	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
+	const inputErrorClasses = `input ${error || isTitleTooLong ? 'errorInput' : ''}`;
 	const titleTooLongMessage = isTitleTooLong && <div className='errorMessage'> Your title is too long...</div>;
 	const titleIsRequiredMessage = error && <div className='errorMessage'> Title is required...</div>;
 	const isDisabled = !title.length || isTitleTooLong;

@@ -39,11 +39,16 @@ ul {
 
 .addTaskButton {
 	margin-left: 5px;
-	padding: 0 10px;
+	padding: 1px 9px 0;
 	border: none;
 	border-radius: 3px;
 	background-color: #3e59e4;
 	color: #fff;
+	font-size: 18px;
+}
+
+.addTaskButton:disabled {
+	opacity: 0.5;
 }
 
 .errorInput {
