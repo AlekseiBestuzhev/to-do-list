@@ -24,7 +24,9 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 							onChange={changeTaskStatus} />
 						<span className={taskClasses.join(' ')}>
 							{task.title} </span>
-						<button onClick={removeTaskHandler}>x</button>
+						<button
+							className='removeButton'
+							onClick={removeTaskHandler}>x</button>
 					</li>
 				)
 			})

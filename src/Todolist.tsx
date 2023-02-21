@@ -51,8 +51,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	return (
 
-		<div>
-			<h3>{props.title}</h3>
+		<div className='todolistBlock'>
+			<h3 className='todolistTitle'>{props.title}</h3>
 			<div>
 				<input
 					value={title}
@@ -71,13 +71,13 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			<div>
 				<button
 					onClick={changeFilter('all')}
-					className={'filterAll'}>All</button>
+					className={props.filter === 'all' ? 'filterAll' : 'filterButton'}>All</button>
 				<button
 					onClick={changeFilter('active')}
-				>Active</button>
+					className={props.filter === 'active' ? 'filterActive' : 'filterButton'}>Active</button>
 				<button
 					onClick={changeFilter('completed')}
-				>Completed</button>
+					className={props.filter === 'completed' ? 'filterCompleted' : 'filterButton'}>Completed</button>
 			</div>
 		</div>
 	);

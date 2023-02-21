@@ -7,6 +7,12 @@
 	margin-right: 50px;
 }
 
+.todolistBlock {
+	padding: 15px;
+	border: 3px solid #3e59e4;
+	border-radius: 5px;
+}
+
 .input:focus {
 	outline: none;
 }
@@ -21,6 +27,7 @@
 
 .task {
 	font-weight: 600;
+	color: #333;
 }
 
 .completedTask {
@@ -28,16 +35,40 @@
 	opacity: 0.6;
 }
 
-.filterButton {
-	padding: 3px 5px;
+.filterButton,
+.filterAll,
+.filterActive,
+.filterCompleted {
+	margin-right: 5px;
+	padding: 5px 15px;
 	border: none;
 	border-radius: 3px;
+	background-color: #939393;
+	color: #fff;
 }
 
 .filterAll {
 	background-color: #3e59e4;
 }
 
-.filterActive {}
+.filterActive {
+	background-color: #e87210;
+}
 
-.filterCompleted {}
+.filterCompleted {
+	background-color: #0ebe40;
+}
+
+.removeButton {
+	margin-left: 5px;
+	border: none;
+	border-radius: 50%;
+	color: #fff;
+	background-color: #939393;
+}
+
+.todolistTitle {
+	margin: 0 0 10px 0;
+	color: #333;
+	font-size: 25px;
+}
