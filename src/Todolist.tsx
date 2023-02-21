@@ -44,8 +44,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const maxLengthTitle: number = 15;
 	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
-	const titleTooLongMessage = isTitleTooLong && <span className='errorMessage'> Your title is too long...</span>;
-	const titleIsRequiredMessage = error && <span className='errorMessage'> Title is required...</span>;
+	const titleTooLongMessage = isTitleTooLong && <div className='errorMessage'> Your title is too long...</div>;
+	const titleIsRequiredMessage = error && <div className='errorMessage'> Title is required...</div>;
 	const isDisabled = !title.length || isTitleTooLong;
 
 	const filterAllStyles = `filterButton ${props.filter === 'all' ? 'filterAll' : ''}`;
@@ -56,14 +56,16 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 		<div className='todolistBlock'>
 			<h3 className='todolistTitle'>{props.title}</h3>
-			<div>
+			<div className='inputGroup'>
 				<input
 					value={title}
 					onChange={onChangeInputHandler}
-					className={inputErrorClasses} />
+					className={inputErrorClasses}
+					placeholder={'Enter task title...'} />
 				<button
-					disabled={isDisabled}
-					onClick={addTask}>+</button>
+					onClick={addTask}
+					className='addTaskButton'
+					disabled={isDisabled}>+</button>
 				{titleTooLongMessage}
 				{titleIsRequiredMessage}
 			</div>

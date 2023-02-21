@@ -1,3 +1,12 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	padding: 30px 20px 20px;
+}
+
 .App {
 	padding: 30px;
 	display: flex;
@@ -13,8 +22,28 @@
 	border-radius: 5px;
 }
 
+.inputGroup {
+	display: flex;
+	height: 25px;
+	position: relative;
+}
+
+.input {
+	flex: 1 1 auto;
+	padding-left: 5px;
+}
+
 .input:focus {
 	outline: none;
+}
+
+.addTaskButton {
+	margin-left: 5px;
+	padding: 0 10px;
+	border: none;
+	border-radius: 3px;
+	background-color: #3e59e4;
+	color: #fff;
 }
 
 .errorInput {
@@ -22,6 +51,9 @@
 }
 
 .errorMessage {
+	position: absolute;
+	left: 0;
+	bottom: -22px;
 	color: red;
 }
 
@@ -61,6 +93,7 @@
 
 .removeButton {
 	margin-left: 5px;
+	padding: 1px 6px;
 	border: none;
 	border-radius: 50%;
 	color: #fff;
