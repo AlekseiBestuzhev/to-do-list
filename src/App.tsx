@@ -29,6 +29,11 @@ const App = () => {
 	}
 	const filteredTasks = getFilteredTasks(tasks, filter);
 
+	const removeTask = (taskId: string) => {
+		const newList = tasks.filter(task => task.id !== taskId);
+		setTasks(newList);
+	}
+
 	return (
 		<div className="App">
 			<Todolist
