@@ -11,7 +11,8 @@ export type TaskType = {
 type TodolistType = {
 	title: string,
 	tasks: TaskType[],
-	changeFilter: (filter: FilterValueType) => void
+	changeFilter: (filter: FilterValueType) => void,
+	removeTask: (taskId: string) => void
 }
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
@@ -26,7 +27,9 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 				<input />
 				<button>+</button>
 			</div>
-			<Tasklist tasks={props.tasks} />
+			<Tasklist
+				tasks={props.tasks}
+				removeTask={props.removeTask} />
 			<div>
 				<button onClick={changeFilter('all')}>All</button>
 				<button onClick={changeFilter('active')}>Active</button>

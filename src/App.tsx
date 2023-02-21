@@ -39,7 +39,8 @@ const App = () => {
 			<Todolist
 				title={todolistTitle}
 				tasks={filteredTasks}
-				changeFilter={changeFilter} />
+				changeFilter={changeFilter}
+				removeTask={removeTask} />
 		</div>
 	);
 }

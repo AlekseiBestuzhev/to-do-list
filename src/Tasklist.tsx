@@ -2,7 +2,8 @@ import React from 'react';
 import { TaskType } from './Todolist';
 
 type TasklistType = {
-	tasks: TaskType[]
+	tasks: TaskType[],
+	removeTask: (taskId: string) => void
 }
 
 export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
@@ -11,11 +12,13 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 		props.tasks.length
 			? props.tasks.map(task => {
 
+				const removeTaskHandler = () => props.removeTask(task.id);
+
 				return (
 					<li key={task.id}>
 						<input type="checkbox" checked={task.isDone} />
 						<span>{task.title} </span>
-						<button>x</button>
+						<button onClick={removeTaskHandler}>x</button>
 					</li>
 				)
 			})
