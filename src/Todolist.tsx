@@ -12,7 +12,8 @@ type TodolistType = {
 	title: string,
 	tasks: TaskType[],
 	changeFilter: (filter: FilterValueType) => void,
-	removeTask: (taskId: string) => void
+	removeTask: (taskId: string) => void,
+	addTask: (title: string) => void
 }
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
@@ -25,7 +26,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 	const addTask = () => {
 		const trimmedTitle = title.trim();
 		if (trimmedTitle) {
-			//props.addTask(title);
+			props.addTask(title);
 		}
 		setTitle('');
 	}
