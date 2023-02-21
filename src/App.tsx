@@ -39,6 +39,10 @@ const App = () => {
 		setTasks([newTask, ...tasks]);
 	}
 
+	const changeTaskStatus = (taskId: string, newIsDone: boolean) => {
+		setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
+	}
+
 	return (
 		<div className="App">
 			<Todolist
