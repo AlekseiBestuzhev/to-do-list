@@ -18,3 +18,12 @@
 .errorMessage {
 	color: red;
 }
+
+.task {
+	font-weight: 600;
+}
+
+.completedTask {
+	text-decoration: line-through;
+	opacity: 0.6;
+}
