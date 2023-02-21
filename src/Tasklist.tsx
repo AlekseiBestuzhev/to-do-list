@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { TaskType } from './Todolist';
 
 type TasklistType = {
 	tasks: TaskType[],
-	removeTask: (taskId: string) => void
+	removeTask: (taskId: string) => void,
+	changeTaskStatus: (taskId: string, newIsDone: boolean) => void
 }
 
 export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
@@ -13,7 +14,6 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 			? props.tasks.map(task => {
 
 				const removeTaskHandler = () => props.removeTask(task.id);
-
 				return (
 					<li key={task.id}>
 						<input type="checkbox" checked={task.isDone} />
