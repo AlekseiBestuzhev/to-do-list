@@ -48,6 +48,9 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 	const titleIsRequiredMessage = error && <span className='errorMessage'> Title is required...</span>;
 	const isDisabled = !title.length || isTitleTooLong;
 
+	const filterAllStyles = `filterButton ${props.filter === 'all' ? 'filterAll' : ''}`;
+	const filterActiveStyles = `filterButton ${props.filter === 'active' ? 'filterActive' : ''}`;
+	const filterCompletedStyles = `filterButton ${props.filter === 'completed' ? 'filterCompleted' : ''}`;
 
 	return (
 
@@ -71,13 +74,13 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			<div>
 				<button
 					onClick={changeFilter('all')}
-					className={props.filter === 'all' ? 'filterAll' : 'filterButton'}>All</button>
+					className={filterAllStyles}>All</button>
 				<button
 					onClick={changeFilter('active')}
-					className={props.filter === 'active' ? 'filterActive' : 'filterButton'}>Active</button>
+					className={filterActiveStyles}>Active</button>
 				<button
 					onClick={changeFilter('completed')}
-					className={props.filter === 'completed' ? 'filterCompleted' : 'filterButton'}>Completed</button>
+					className={filterCompletedStyles}>Completed</button>
 			</div>
 		</div>
 	);

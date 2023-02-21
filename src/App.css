@@ -35,16 +35,16 @@
 	opacity: 0.6;
 }
 
-.filterButton,
-.filterAll,
-.filterActive,
-.filterCompleted {
-	margin-right: 5px;
+.filterButton {
 	padding: 5px 15px;
 	border: none;
 	border-radius: 3px;
 	background-color: #939393;
 	color: #fff;
+}
+
+.filterButton:not(:last-child) {
+	margin-right: 5px;
 }
 
 .filterAll {
