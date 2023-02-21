@@ -46,7 +46,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			</div>
 			<Tasklist
 				tasks={props.tasks}
-				removeTask={props.removeTask} />
+				removeTask={props.removeTask}
+				changeTaskStatus={props.changeTaskStatus} />
 			<div>
 				<button onClick={changeFilter('all')}>All</button>
 				<button onClick={changeFilter('active')}>Active</button>

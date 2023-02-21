@@ -14,9 +14,12 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 			? props.tasks.map(task => {
 
 				const removeTaskHandler = () => props.removeTask(task.id);
+				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked);
 				return (
 					<li key={task.id}>
-						<input type="checkbox" checked={task.isDone} />
+						<input type="checkbox"
+							checked={task.isDone}
+							onChange={changeTaskStatus} />
 						<span>{task.title} </span>
 						<button onClick={removeTaskHandler}>x</button>
 					</li>
