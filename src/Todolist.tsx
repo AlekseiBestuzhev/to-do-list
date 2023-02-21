@@ -19,8 +19,12 @@ type TodolistType = {
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
+	const [error, setError] = React.useState<boolean>(false);
+	const inputErrorClasses = `input ${error ? 'errorInput' : ''}`;
+
 	const [title, setTitle] = React.useState('');
 	const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		error && setError(false);
 		setTitle(e.currentTarget.value);
 	}
 
@@ -28,6 +32,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 		const trimmedTitle = title.trim();
 		if (trimmedTitle) {
 			props.addTask(title);
+		} else {
+			setError(true);
 		}
 		setTitle('');
 	}
@@ -41,7 +47,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			<div>
 				<input
 					value={title}
-					onChange={onChangeInputHandler} />
+					onChange={onChangeInputHandler}
+					className={inputErrorClasses} />
 				<button onClick={addTask}>+</button>
 			</div>
 			<Tasklist
