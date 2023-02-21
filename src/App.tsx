@@ -16,6 +16,7 @@ const App = () => {
 	]);
 
 	const [filter, setFilter] = React.useState<FilterValueType>('all');
+	const changeFilter = (filter: FilterValueType) => setFilter(filter);
 	const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
 		switch (filter) {
 			case 'active':
@@ -32,7 +33,8 @@ const App = () => {
 		<div className="App">
 			<Todolist
 				title={todolistTitle}
-				tasks={filteredTasks} />
+				tasks={filteredTasks}
+				changeFilter={changeFilter} />
 		</div>
 	);
 }

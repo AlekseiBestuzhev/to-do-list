@@ -1,4 +1,5 @@
 import React from 'react';
+import { FilterValueType } from './App';
 import { Tasklist } from './Tasklist';
 
 export type TaskType = {
@@ -9,7 +10,8 @@ export type TaskType = {
 
 type TodolistType = {
 	title: string,
-	tasks: TaskType[]
+	tasks: TaskType[],
+	changeFilter: (filter: FilterValueType) => void
 }
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
