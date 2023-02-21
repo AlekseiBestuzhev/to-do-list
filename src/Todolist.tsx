@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tasklist } from './Tasklist';
 
 export type TaskType = {
 	id: string,
@@ -21,11 +22,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 				<input />
 				<button>+</button>
 			</div>
-			<ul>
-				<li><input type="checkbox" checked={true} /> <span>HTML&CSS</span></li>
-				<li><input type="checkbox" checked={true} /> <span>JS</span></li>
-				<li><input type="checkbox" checked={false} /> <span>React</span></li>
-			</ul>
+			<Tasklist tasks={props.tasks} />
 			<div>
 				<button>All</button>
 				<button>Active</button>
