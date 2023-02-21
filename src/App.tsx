@@ -1,26 +1,23 @@
 import React from 'react';
+import { v1 } from 'uuid';
 import './App.css';
+import { TaskType, Todolist } from './Todolist';
 
-function App() {
+const App = () => {
+
+	const todolistTitle = 'Movies';
+
+	const [tasks, setTasks] = React.useState<TaskType[]>([
+		{ id: v1(), title: 'Interstellar', isDone: true },
+		{ id: v1(), title: 'Moon 2112', isDone: true },
+		{ id: v1(), title: 'Odyssey 2001', isDone: false },
+	]);
+
 	return (
 		<div className="App">
-			<div>
-				<h3>What to learn</h3>
-				<div>
-					<input />
-					<button>+</button>
-				</div>
-				<ul>
-					<li><input type="checkbox" checked={true} /> <span>HTML&CSS</span></li>
-					<li><input type="checkbox" checked={true} /> <span>JS</span></li>
-					<li><input type="checkbox" checked={false} /> <span>React</span></li>
-				</ul>
-				<div>
-					<button>All</button>
-					<button>Active</button>
-					<button>Completed</button>
-				</div>
-			</div>
+			<Todolist
+				title={todolistTitle}
+				tasks={tasks} />
 		</div>
 	);
 }
