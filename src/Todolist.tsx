@@ -16,6 +16,8 @@ type TodolistType = {
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
+	const changeFilter = (filter: FilterValueType) => () => props.changeFilter(filter);
+
 	return (
 
 		<div>
@@ -26,9 +28,9 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			</div>
 			<Tasklist tasks={props.tasks} />
 			<div>
-				<button>All</button>
-				<button>Active</button>
-				<button>Completed</button>
+				<button onClick={changeFilter('all')}>All</button>
+				<button onClick={changeFilter('active')}>Active</button>
+				<button onClick={changeFilter('completed')}>Completed</button>
 			</div>
 		</div>
 	);
