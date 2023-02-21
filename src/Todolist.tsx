@@ -28,10 +28,11 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 		setTitle(e.currentTarget.value);
 	}
 
+	const trimmedTitle = title.trim();
+
 	const addTask = () => {
-		const trimmedTitle = title.trim();
 		if (trimmedTitle) {
-			props.addTask(title);
+			props.addTask(trimmedTitle);
 		} else {
 			setError(true);
 		}
@@ -39,6 +40,13 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 	}
 
 	const changeFilter = (filter: FilterValueType) => () => props.changeFilter(filter);
+
+	const maxLengthTitle: number = 15;
+	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
+	const titleTooLongMessage = isTitleTooLong && <span className='errorMessage'> Your title is too long...</span>;
+	const titleIsRequiredMessage = error && <span className='errorMessage'> Title is required...</span>;
+	const isDisabled = !title.length || isTitleTooLong;
+
 
 	return (
 
@@ -49,7 +57,11 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 					value={title}
 					onChange={onChangeInputHandler}
 					className={inputErrorClasses} />
-				<button onClick={addTask}>+</button>
+				<button
+					disabled={isDisabled}
+					onClick={addTask}>+</button>
+				{titleTooLongMessage}
+				{titleIsRequiredMessage}
 			</div>
 			<Tasklist
 				tasks={props.tasks}
