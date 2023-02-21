@@ -51,7 +51,8 @@ const App = () => {
 				changeFilter={changeFilter}
 				removeTask={removeTask}
 				addTask={addTask}
-				changeTaskStatus={changeTaskStatus} />
+				changeTaskStatus={changeTaskStatus}
+				filter={filter} />
 		</div>
 	);
 }

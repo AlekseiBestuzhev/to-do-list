@@ -27,3 +27,17 @@
 	text-decoration: line-through;
 	opacity: 0.6;
 }
+
+.filterButton {
+	padding: 3px 5px;
+	border: none;
+	border-radius: 3px;
+}
+
+.filterAll {
+	background-color: #3e59e4;
+}
+
+.filterActive {}
+
+.filterCompleted {}
