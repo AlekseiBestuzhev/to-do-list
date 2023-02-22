@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { TaskType } from './Todolist';
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type TasklistType = {
 	tasks: TaskType[],
@@ -8,6 +9,8 @@ type TasklistType = {
 }
 
 export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
+
+	const [listRef] = useAutoAnimate<HTMLUListElement>();
 
 	const taskItems: JSX.Element[] | JSX.Element =
 		props.tasks.length
@@ -33,7 +36,7 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 			: <span>Your list is empty...</span>
 
 	return (
-		<ul>
+		<ul ref={listRef}>
 			{taskItems}
 		</ul>
 	);
