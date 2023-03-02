@@ -1,21 +1,33 @@
-import React from 'react';
+import { useState } from 'react';
 import { v1 } from 'uuid';
 import './App.css';
 import { TaskType, Todolist } from './Todolist';
 
 export type FilterValueType = 'all' | 'active' | 'completed';
 
+type TodolistsType = {
+	id: string,
+	title: string,
+	filter: FilterValueType
+}
+
 const App = () => {
 
-	const todolistTitle = 'Movies';
+	const todolistID_1 = v1();
+	const todolistID_2 = v1();
 
-	const [tasks, setTasks] = React.useState<TaskType[]>([
+	const [todolists, setTodolists] = useState<TodolistsType[]>([
+		{ id: todolistID_1, title: 'Movies', filter: 'all' },
+		{ id: todolistID_2, title: 'Goods', filter: 'active' }
+	]);
+
+	const [tasks, setTasks] = useState<TaskType[]>([
 		{ id: v1(), title: 'Interstellar', isDone: true },
 		{ id: v1(), title: 'Moon 2112', isDone: true },
 		{ id: v1(), title: 'Odyssey 2001', isDone: false }
 	]);
 
-	const [filter, setFilter] = React.useState<FilterValueType>('all');
+	const [filter, setFilter] = useState<FilterValueType>('all');
 	const changeFilter = (filter: FilterValueType) => setFilter(filter);
 	const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
 		switch (filter) {
@@ -45,14 +57,20 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<Todolist
-				title={todolistTitle}
-				tasks={filteredTasks}
-				changeFilter={changeFilter}
-				removeTask={removeTask}
-				addTask={addTask}
-				changeTaskStatus={changeTaskStatus}
-				filter={filter} />
+			{todolists.map(list => {
+				return (
+					<Todolist
+						key={list.id}
+						todolistID={list.id}
+						title={list.title}
+						tasks={filteredTasks}
+						changeFilter={changeFilter}
+						removeTask={removeTask}
+						addTask={addTask}
+						changeTaskStatus={changeTaskStatus}
+						filter={list.filter} />
+				)
+			})}
 		</div>
 	);
 }
