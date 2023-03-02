@@ -45,6 +45,8 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const changeFilter = (filter: FilterValueType) => () => props.changeTodolistFilter(props.todolistID, filter);
 
+	const deleteList = () => props.removeTodolist(props.todolistID);
+
 	const maxLengthTitle: number = 15;
 	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
 	const inputErrorClasses = `input ${error || isTitleTooLong ? 'errorInput' : ''}`;
@@ -61,7 +63,9 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 		<div className='todolistBlock'>
 			<div className='todolistHeader'>
 				<h3 className='todolistTitle'>{props.title}</h3>
-				<button className='deleteTodolist'></button>
+				<button
+					className='deleteTodolist'
+					onClick={deleteList}></button>
 			</div >
 			<div className='inputGroup'>
 				<input

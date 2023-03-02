@@ -24,7 +24,7 @@ const App = (): JSX.Element => {
 
 	const [todolists, setTodolists] = useState<TodolistStateType>([
 		{ id: todolistID_1, title: 'Movies', filter: 'all' },
-		{ id: todolistID_2, title: 'Food', filter: 'active' }
+		{ id: todolistID_2, title: 'Food', filter: 'all' }
 	]);
 
 	const [tasks, setTasks] = useState<TasksStateType>({
@@ -34,13 +34,11 @@ const App = (): JSX.Element => {
 			{ id: v1(), title: 'Odyssey 2001', isDone: false }
 		],
 		[todolistID_2]: [
-			{ id: v1(), title: 'Tomatoes', isDone: false },
+			{ id: v1(), title: 'Tomatoes', isDone: true },
 			{ id: v1(), title: 'Chicken', isDone: false },
 			{ id: v1(), title: 'Bread', isDone: false }
 		],
 	});
-
-	const [filter, setFilter] = useState<FilterValueType>('all');
 
 	const changeTodolistFilter = (todolistID: string, filter: FilterValueType) => {
 		setTodolists(todolists.map(list => list.id === todolistID ? { ...list, filter: filter } : list));
@@ -85,24 +83,24 @@ const App = (): JSX.Element => {
 		// setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
 	}
 
-	const todolistItems = todolists.map(list => {
-
-		const filteredTasks = getFilteredTasks(tasks[list.id], list.filter);
-
-		return (
-			<Todolist
-				key={list.id}
-				todolistID={list.id}
-				title={list.title}
-				tasks={filteredTasks}
-				filter={list.filter}
-				removeTask={removeTask}
-				addTask={addTask}
-				changeTaskStatus={changeTaskStatus}
-				changeTodolistFilter={changeTodolistFilter}
-				removeTodolist={removeTodolist} />
-		)
-	})
+	const todolistItems = todolists.length
+		? todolists.map(list => {
+			const filteredTasks = getFilteredTasks(tasks[list.id], list.filter);
+			return (
+				<Todolist
+					key={list.id}
+					todolistID={list.id}
+					title={list.title}
+					tasks={filteredTasks}
+					filter={list.filter}
+					removeTask={removeTask}
+					addTask={addTask}
+					changeTaskStatus={changeTaskStatus}
+					changeTodolistFilter={changeTodolistFilter}
+					removeTodolist={removeTodolist} />
+			)
+		})
+		: <span>Create To Do List...</span>
 
 	return (
 		<div className="App">
