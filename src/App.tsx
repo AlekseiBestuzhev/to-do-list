@@ -76,6 +76,7 @@ const App = (): JSX.Element => {
 	}
 
 	const changeTaskStatus = (todolistID: string, taskId: string, newIsDone: boolean) => {
+		setTasks({ ...tasks, [todolistID]: tasks[todolistID].map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task) })
 		// setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
 	}
 
