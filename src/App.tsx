@@ -47,6 +47,11 @@ const App = (): JSX.Element => {
 		//setFilter(filter);
 	}
 
+	const removeTodolist = (todolistID: string) => {
+		setTodolists(todolists.filter(list => list.id !== todolistID));
+		delete tasks[todolistID];
+	}
+
 	const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
 		switch (filter) {
 			case 'active':
