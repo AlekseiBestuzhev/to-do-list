@@ -41,7 +41,11 @@ const App = (): JSX.Element => {
 	});
 
 	const [filter, setFilter] = useState<FilterValueType>('all');
-	const changeFilter = (filter: FilterValueType) => setFilter(filter);
+
+	const changeTodolistFilter = (todolistID: string, filter: FilterValueType) => {
+		//setFilter(filter);
+	}
+
 	const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
 		switch (filter) {
 			case 'active':
@@ -65,13 +69,14 @@ const App = (): JSX.Element => {
 		// // setTasks(newList);
 	}
 
-	const addTask = (title: string) => {
+	const addTask = (todolistID: string, title: string) => {
 		const newTask: TaskType = { id: v1(), title: title, isDone: false };
-		setTasks([newTask, ...tasks]);
+		setTasks({ ...tasks, [todolistID]: [newTask, ...tasks[todolistID]] });
+		// setTasks([newTask, ...tasks]);
 	}
 
-	const changeTaskStatus = (taskId: string, newIsDone: boolean) => {
-		setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
+	const changeTaskStatus = (todolistID: string, taskId: string, newIsDone: boolean) => {
+		// setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
 	}
 
 	return (
