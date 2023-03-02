@@ -62,7 +62,6 @@ const App = (): JSX.Element => {
 				return tasks;
 		}
 	}
-	const filteredTasks = getFilteredTasks(tasks, filter);
 
 	const removeTask = (todolistID: string, taskId: string) => {
 		setTasks({ ...tasks, [todolistID]: tasks[todolistID].filter(task => task.id !== taskId) });
@@ -88,19 +87,7 @@ const App = (): JSX.Element => {
 
 	const todolistItems = todolists.map(list => {
 
-		const [filter, setFilter] = useState<FilterValueType>('all');
-		const changeFilter = (filter: FilterValueType) => setFilter(filter);
-		const getFilteredTasks = (todolistID: string, tasks: TaskType[], filter: FilterValueType) => {
-			switch (filter) {
-				case 'active':
-					return tasks.filter(task => task.isDone === false);
-				case 'completed':
-					return tasks.filter(task => task.isDone === true);
-				default:
-					return tasks;
-			}
-		}
-		const filteredTasks = getFilteredTasks(todolistID, tasks[todolistID], filter);
+		const filteredTasks = getFilteredTasks(tasks[list.id], list.filter);
 
 		return (
 			<Todolist

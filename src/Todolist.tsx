@@ -36,14 +36,14 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const addTask = () => {
 		if (trimmedTitle) {
-			props.addTask(trimmedTitle);
+			props.addTask(props.todolistID, trimmedTitle);
 		} else {
 			setError(true);
 		}
 		setTitle('');
 	}
 
-	const changeFilter = (filter: FilterValueType) => () => props.changeFilter(filter);
+	const changeFilter = (filter: FilterValueType) => () => props.changeTodolistFilter(props.todolistID, filter);
 
 	const maxLengthTitle: number = 15;
 	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
