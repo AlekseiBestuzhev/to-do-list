@@ -86,37 +86,40 @@ const App = (): JSX.Element => {
 		// setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
 	}
 
+	const todolistItems = todolists.map(list => {
+
+		const [filter, setFilter] = useState<FilterValueType>('all');
+		const changeFilter = (filter: FilterValueType) => setFilter(filter);
+		const getFilteredTasks = (todolistID: string, tasks: TaskType[], filter: FilterValueType) => {
+			switch (filter) {
+				case 'active':
+					return tasks.filter(task => task.isDone === false);
+				case 'completed':
+					return tasks.filter(task => task.isDone === true);
+				default:
+					return tasks;
+			}
+		}
+		const filteredTasks = getFilteredTasks(todolistID, tasks[todolistID], filter);
+
+		return (
+			<Todolist
+				key={list.id}
+				todolistID={list.id}
+				title={list.title}
+				tasks={filteredTasks}
+				filter={list.filter}
+				removeTask={removeTask}
+				addTask={addTask}
+				changeTaskStatus={changeTaskStatus}
+				changeTodolistFilter={changeTodolistFilter}
+				removeTodolist={removeTodolist} />
+		)
+	})
+
 	return (
 		<div className="App">
-			{todolists.map(list => {
-
-				const [filter, setFilter] = useState<FilterValueType>('all');
-				const changeFilter = (filter: FilterValueType) => setFilter(filter);
-				const getFilteredTasks = (tasks: TaskType[], filter: FilterValueType) => {
-					switch (filter) {
-						case 'active':
-							return tasks.filter(task => task.isDone === false);
-						case 'completed':
-							return tasks.filter(task => task.isDone === true);
-						default:
-							return tasks;
-					}
-				}
-				const filteredTasks = getFilteredTasks(tasks[todolistID], filter);
-
-				return (
-					<Todolist
-						key={list.id}
-						todolistID={list.id}
-						title={list.title}
-						tasks={filteredTasks}
-						changeFilter={changeFilter}
-						removeTask={removeTask}
-						addTask={addTask}
-						changeTaskStatus={changeTaskStatus}
-						filter={list.filter} />
-				)
-			})}
+			{todolistItems}
 		</div>
 	);
 }

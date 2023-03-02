@@ -9,14 +9,17 @@ export type TaskType = {
 }
 
 type TodolistType = {
+	todolistID: string,
 	title: string,
-	tasks: TaskType[],
-	changeFilter: (filter: FilterValueType) => void,
-	removeTask: (taskId: string) => void,
-	addTask: (title: string) => void,
-	changeTaskStatus: (taskId: string, newIsDone: boolean) => void,
 	filter: FilterValueType,
-	todolistID: string
+	tasks: TaskType[],
+
+	removeTask: (todolistID: string, taskId: string) => void,
+	addTask: (todolistID: string, title: string) => void,
+	changeTaskStatus: (todolistID: string, taskId: string, newIsDone: boolean) => void,
+
+	changeTodolistFilter: (todolistID: string, filter: FilterValueType) => void,
+	removeTodolist: (todolistID: string) => void
 }
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
