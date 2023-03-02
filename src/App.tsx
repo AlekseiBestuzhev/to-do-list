@@ -43,6 +43,7 @@ const App = (): JSX.Element => {
 	const [filter, setFilter] = useState<FilterValueType>('all');
 
 	const changeTodolistFilter = (todolistID: string, filter: FilterValueType) => {
+		setTodolists(todolists.map(list => list.id === todolistID ? { ...list, filter: filter } : list));
 		//setFilter(filter);
 	}
 
