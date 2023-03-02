@@ -21,9 +21,22 @@ button {
 }
 
 .todolistBlock {
+	display: flex;
+	flex-direction: column;
 	padding: 15px;
 	border: 3px solid #3e59e4;
 	border-radius: 5px;
+}
+
+.todolistHeader {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 10px 0;
+}
+
+.todolistTitle {
+	color: #333;
+	font-size: 25px;
 }
 
 .inputGroup {
@@ -67,6 +80,10 @@ button {
 	color: red;
 }
 
+.taskItems {
+	flex-grow: 1;
+}
+
 .task {
 	font-weight: 600;
 	color: #333;
@@ -101,8 +118,12 @@ button {
 }
 
 .addTaskButton:disabled:hover {
-	box-shadow: none;
+	opacity: 0.5;
 	cursor: auto;
+}
+
+.addTaskButton:disabled:active {
+color: #fff;
 }
 
 .filterAll {
@@ -129,10 +150,4 @@ button {
 
 .removeButton:hover {
 	background-color: #adadad;
-}
-
-.todolistTitle {
-	margin: 0 0 10px 0;
-	color: #333;
-	font-size: 25px;
 }

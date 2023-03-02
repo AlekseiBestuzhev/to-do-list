@@ -59,7 +59,9 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 	return (
 
 		<div className='todolistBlock'>
-			<h3 className='todolistTitle'>{props.title}</h3>
+			<div className='todolistHeader'>
+				<h3 className='todolistTitle'>{props.title}</h3>
+			</div >
 			<div className='inputGroup'>
 				<input
 					value={title}

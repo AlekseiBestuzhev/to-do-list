@@ -37,7 +37,7 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 			: <span>Your list is empty...</span>
 
 	return (
-		<ul ref={listRef}>
+		<ul ref={listRef} className='taskItems'>
 			{taskItems}
 		</ul>
 	);
