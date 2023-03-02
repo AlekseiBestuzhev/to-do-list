@@ -4,8 +4,9 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type TasklistType = {
 	tasks: TaskType[],
-	removeTask: (taskId: string) => void,
-	changeTaskStatus: (taskId: string, newIsDone: boolean) => void
+	todolistID: string,
+	removeTask: (todolistID: string, taskId: string) => void,
+	changeTaskStatus: (todolistID: string, taskId: string, newIsDone: boolean) => void
 }
 
 export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
@@ -16,8 +17,8 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 		props.tasks.length
 			? props.tasks.map(task => {
 
-				const removeTaskHandler = () => props.removeTask(task.id);
-				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked);
+				const removeTaskHandler = () => props.removeTask(props.todolistID, task.id);
+				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(props.todolistID, task.id, e.currentTarget.checked);
 				const taskClasses = ['task'];
 				task.isDone && taskClasses.push('completedTask');
 				return (

@@ -75,6 +75,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 			</div>
 			<Tasklist
 				tasks={props.tasks}
+				todolistID={props.todolistID}
 				removeTask={props.removeTask}
 				changeTaskStatus={props.changeTaskStatus} />
 			<div>
