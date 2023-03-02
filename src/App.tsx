@@ -5,27 +5,40 @@ import { TaskType, Todolist } from './Todolist';
 
 export type FilterValueType = 'all' | 'active' | 'completed';
 
-type TodolistsType = {
+type TodolistSType = {
 	id: string,
 	title: string,
 	filter: FilterValueType
 }
 
-const App = () => {
+type TodolistStateType = TodolistSType[];
+
+type TasksStateType = {
+	[todolistID: string]: TaskType[]
+}
+
+const App = (): JSX.Element => {
 
 	const todolistID_1 = v1();
 	const todolistID_2 = v1();
 
-	const [todolists, setTodolists] = useState<TodolistsType[]>([
+	const [todolists, setTodolists] = useState<TodolistStateType>([
 		{ id: todolistID_1, title: 'Movies', filter: 'all' },
-		{ id: todolistID_2, title: 'Goods', filter: 'active' }
+		{ id: todolistID_2, title: 'Food', filter: 'active' }
 	]);
 
-	const [tasks, setTasks] = useState<TaskType[]>([
-		{ id: v1(), title: 'Interstellar', isDone: true },
-		{ id: v1(), title: 'Moon 2112', isDone: true },
-		{ id: v1(), title: 'Odyssey 2001', isDone: false }
-	]);
+	const [tasks, setTasks] = useState<TasksStateType>({
+		[todolistID_1]: [
+			{ id: v1(), title: 'Interstellar', isDone: true },
+			{ id: v1(), title: 'Moon 2112', isDone: true },
+			{ id: v1(), title: 'Odyssey 2001', isDone: false }
+		],
+		[todolistID_2]: [
+			{ id: v1(), title: 'Tomatoes', isDone: false },
+			{ id: v1(), title: 'Chicken', isDone: false },
+			{ id: v1(), title: 'Bread', isDone: false }
+		],
+	});
 
 	const [filter, setFilter] = useState<FilterValueType>('all');
 	const changeFilter = (filter: FilterValueType) => setFilter(filter);
