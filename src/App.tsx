@@ -3,6 +3,7 @@ import { v1 } from 'uuid';
 import './App.css';
 import { TaskType, Todolist } from './Todolist';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { AddItemForm } from './AddItemForm';
 
 export type FilterValueType = 'all' | 'active' | 'completed';
 
@@ -106,9 +107,14 @@ const App = (): JSX.Element => {
 		: <span>Create To Do List...</span>
 
 	return (
-		<div className="App" ref={todolistsRef}>
-			{todolistItems}
-		</div>
+		<>
+			<div className='AddList'>
+				<AddItemForm callBack={() => { }} />
+			</div >
+			<div className="App" ref={todolistsRef}>
+				{todolistItems}
+			</div>
+		</>
 	);
 }
 

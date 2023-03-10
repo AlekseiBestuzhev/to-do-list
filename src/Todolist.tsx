@@ -25,8 +25,8 @@ type TodolistType = {
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
-	const addTask = () => {
-
+	const addTaskHandler = (title: string) => {
+		props.addTask(props.todolistID, title);
 	}
 
 	const changeFilter = (filter: FilterValueType) => () => props.changeTodolistFilter(props.todolistID, filter);
@@ -46,7 +46,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 					className='deleteTodolist'
 					onClick={deleteList}></button>
 			</div >
-			<AddItemForm callBack={() => { }} />
+			<AddItemForm callBack={addTaskHandler} />
 			<Tasklist
 				tasks={props.tasks}
 				todolistID={props.todolistID}

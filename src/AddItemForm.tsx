@@ -38,7 +38,7 @@ export const AddItemForm: FC<AddItemFormType> = ({ callBack }) => {
 				value={title}
 				onChange={onChangeInputHandler}
 				className={inputErrorClasses}
-				placeholder={'Enter task title...'} />
+				placeholder={'Enter title...'} />
 			<button
 				onClick={addTask}
 				className='addTaskButton'

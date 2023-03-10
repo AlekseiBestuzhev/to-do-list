@@ -11,6 +11,11 @@ button {
 	cursor: pointer;
 }
 
+.AddList {
+	width: 250px;
+	margin: 20px auto 0;
+}
+
 .App {
 	padding: 30px;
 	display: flex;
