@@ -117,6 +117,14 @@ const App = (): JSX.Element => {
 		})
 		: <span>Create To Do List...</span>
 
+	const changeTaskTitle = (todolistID: string, taskId: string, newTitle: string) => {
+		setTasks({ ...tasks, [todolistID]: tasks[todolistID].map(task => task.id === taskId ? { ...task, title: newTitle } : task) })
+	}
+
+	const changeTodolistTitle = (todolistID: string, newTitle: string) => {
+		setTodolists(todolists.map(list => list.id === todolistID ? { ...list, title: newTitle } : list));
+	}
+
 	return (
 		<>
 			<div className='AddList'>
