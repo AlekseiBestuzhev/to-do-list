@@ -25,6 +25,8 @@ export const AddItemForm: FC<AddItemFormType> = ({ addItem }) => {
 		setTitle('');
 	}
 
+	const onKeyDownAdd = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addNewItem();
+
 	const maxLengthTitle: number = 15;
 	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
 	const inputErrorClasses = `input ${error || isTitleTooLong ? 'errorInput' : ''}`;
@@ -36,9 +38,10 @@ export const AddItemForm: FC<AddItemFormType> = ({ addItem }) => {
 		<div className='inputGroup'>
 			<input
 				value={title}
-				onChange={onChangeInputHandler}
+				onKeyDown={onKeyDownAdd}
 				className={inputErrorClasses}
-				placeholder={'Enter title...'} />
+				placeholder={'Enter title...'}
+				onChange={onChangeInputHandler} />
 			<button
 				onClick={addNewItem}
 				className='addTaskButton'
