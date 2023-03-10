@@ -11,17 +11,24 @@ export const EditableSpan: FC<EditableSpanType> = ({
 }) => {
 
 	const [localTitle, setLocalTitle] = useState<string>(title);
-	const [editMode, setEditMode] = useState<boolean>(true);
+	const [editMode, setEditMode] = useState<boolean>(false);
 
 	const onChangeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
 		setLocalTitle(e.currentTarget.value);
 	}
 
+	const onEditMode = () => setEditMode(true);
+	const offEditMode = () => setEditMode(false);
+
 	return (
 		editMode
 			? <input
+				autoFocus
 				value={localTitle}
+				onBlur={offEditMode}
 				onChange={onChangeLocalTitle} />
-			: <span className={spanClassses}>{title}</span>
+			: <span
+				onDoubleClick={onEditMode}
+				className={spanClassses}>{title}</span>
 	);
 }
