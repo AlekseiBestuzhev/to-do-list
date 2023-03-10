@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
 
 type AddItemFormType = {
-	callBack: (title: string) => void
+	addItem: (title: string) => void
 }
 
-export const AddItemForm: FC<AddItemFormType> = ({ callBack }) => {
+export const AddItemForm: FC<AddItemFormType> = ({ addItem }) => {
 
 	const [error, setError] = useState<boolean>(false);
 
@@ -16,9 +16,9 @@ export const AddItemForm: FC<AddItemFormType> = ({ callBack }) => {
 
 	const trimmedTitle = title.trim();
 
-	const addTask = () => {
+	const addNewItem = () => {
 		if (trimmedTitle) {
-			callBack(trimmedTitle);
+			addItem(trimmedTitle);
 		} else {
 			setError(true);
 		}
@@ -40,7 +40,7 @@ export const AddItemForm: FC<AddItemFormType> = ({ callBack }) => {
 				className={inputErrorClasses}
 				placeholder={'Enter title...'} />
 			<button
-				onClick={addTask}
+				onClick={addNewItem}
 				className='addTaskButton'
 				disabled={isDisabled}>+</button>
 			{titleTooLongMessage}

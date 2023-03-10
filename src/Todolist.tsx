@@ -46,7 +46,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 					className='deleteTodolist'
 					onClick={deleteList}></button>
 			</div >
-			<AddItemForm callBack={addTaskHandler} />
+			<AddItemForm addItem={addTaskHandler} />
 			<Tasklist
 				tasks={props.tasks}
 				todolistID={props.todolistID}

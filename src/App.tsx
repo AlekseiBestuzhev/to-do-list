@@ -7,13 +7,13 @@ import { AddItemForm } from './AddItemForm';
 
 export type FilterValueType = 'all' | 'active' | 'completed';
 
-type TodolistSType = {
+type TodolistType = {
 	id: string,
 	title: string,
 	filter: FilterValueType
 }
 
-type TodolistStateType = TodolistSType[];
+type TodolistStateType = TodolistType[];
 
 type TasksStateType = {
 	[todolistID: string]: TaskType[]
@@ -87,6 +87,17 @@ const App = (): JSX.Element => {
 		// setTasks(tasks.map(task => task.id === taskId ? { ...task, isDone: newIsDone } : task));
 	}
 
+	const addTodolist = (title: string) => {
+		const newTodolistID = v1();
+		const newTodolist: TodolistType = {
+			id: newTodolistID,
+			title: title,
+			filter: 'all'
+		};
+		setTodolists([...todolists, newTodolist]);
+		setTasks({ ...tasks, [newTodolistID]: [] })
+	}
+
 	const todolistItems = todolists.length
 		? todolists.map(list => {
 			const filteredTasks = getFilteredTasks(tasks[list.id], list.filter);
@@ -109,7 +120,7 @@ const App = (): JSX.Element => {
 	return (
 		<>
 			<div className='AddList'>
-				<AddItemForm callBack={() => { }} />
+				<AddItemForm addItem={addTodolist} />
 			</div >
 			<div className="App" ref={todolistsRef}>
 				{todolistItems}
