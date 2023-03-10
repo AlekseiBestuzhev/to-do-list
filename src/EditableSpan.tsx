@@ -30,6 +30,7 @@ export const EditableSpan: FC<EditableSpanType> = ({
 				autoFocus
 				value={localTitle}
 				onBlur={offEditMode}
+				style={{ width: '135px' }}
 				onChange={onChangeLocalTitle} />
 			: <span
 				onDoubleClick={onEditMode}

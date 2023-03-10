@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { AddItemForm } from './AddItemForm';
 import { FilterValueType } from './App';
+import { EditableSpan } from './EditableSpan';
 import { Tasklist } from './Tasklist';
 
 export type TaskType = {
@@ -21,6 +22,7 @@ type TodolistType = {
 	changeTaskStatus: (todolistID: string, taskId: string, newIsDone: boolean) => void,
 
 	removeTodolist: (todolistID: string) => void,
+	changeTodolistTitle: (todolistID: string, newTitle: string) => void,
 	changeTodolistFilter: (todolistID: string, filter: FilterValueType) => void
 }
 
@@ -34,6 +36,10 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 	const deleteList = () => props.removeTodolist(props.todolistID);
 
+	const changeTodolistTitleHandler = (newTitle: string) => {
+		props.changeTodolistTitle(props.todolistID, newTitle)
+	}
+
 	const filterAllStyles = `filterButton ${props.filter === 'all' ? 'filterAll' : ''}`;
 	const filterActiveStyles = `filterButton ${props.filter === 'active' ? 'filterActive' : ''}`;
 	const filterCompletedStyles = `filterButton ${props.filter === 'completed' ? 'filterCompleted' : ''}`;
@@ -42,7 +48,10 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
 		<div className='todolistBlock'>
 			<div className='todolistHeader'>
-				<h3 className='todolistTitle'>{props.title}</h3>
+				<EditableSpan
+					title={props.title}
+					spanClassses={'todolistTitle'}
+					changeTitle={changeTodolistTitleHandler} />
 				<button
 					className='deleteTodolist'
 					onClick={deleteList}></button>

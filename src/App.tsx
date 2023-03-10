@@ -122,7 +122,7 @@ const App = (): JSX.Element => {
 					changeTodolistFilter={changeTodolistFilter}
 					removeTodolist={removeTodolist}
 					changeTaskTitle={changeTaskTitle}
-				/>
+					changeTodolistTitle={changeTodolistTitle} />
 			)
 		})
 		: <span>Create To Do List...</span>

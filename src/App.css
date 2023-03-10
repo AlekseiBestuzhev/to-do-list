@@ -39,6 +39,7 @@ button {
 .todolistTitle {
 	color: #333;
 	font-size: 25px;
+	font-weight: 600;
 }
 
 .deleteTodolist {
