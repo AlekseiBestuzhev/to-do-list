@@ -19,14 +19,13 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 
 				const removeTaskHandler = () => props.removeTask(props.todolistID, task.id);
 				const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(props.todolistID, task.id, e.currentTarget.checked);
-				const taskClasses = ['task'];
-				task.isDone && taskClasses.push('completedTask');
+				const taskClasses = task.isDone ? 'task completedTask' : 'task';
 				return (
 					<li key={task.id}>
 						<input type="checkbox"
 							checked={task.isDone}
 							onChange={changeTaskStatus} />
-						<span className={taskClasses.join(' ')}>
+						<span className={taskClasses}>
 							{task.title} </span>
 						<button
 							className='removeButton'
