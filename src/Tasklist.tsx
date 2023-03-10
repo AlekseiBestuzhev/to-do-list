@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { TaskType } from './Todolist';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { EditableSpan } from './EditableSpan';
 
 type TasklistType = {
 	tasks: TaskType[],
@@ -25,8 +26,9 @@ export const Tasklist: React.FC<TasklistType> = (props): JSX.Element => {
 						<input type="checkbox"
 							checked={task.isDone}
 							onChange={changeTaskStatus} />
-						<span className={taskClasses}>
-							{task.title} </span>
+						<EditableSpan
+							title={task.title}
+							spanClassses={taskClasses} />
 						<button
 							className='removeButton'
 							onClick={removeTaskHandler}>x</button>
