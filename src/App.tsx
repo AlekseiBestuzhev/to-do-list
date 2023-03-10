@@ -98,6 +98,14 @@ const App = (): JSX.Element => {
 		setTasks({ ...tasks, [newTodolistID]: [] })
 	}
 
+	const changeTaskTitle = (todolistID: string, taskId: string, newTitle: string) => {
+		setTasks({ ...tasks, [todolistID]: tasks[todolistID].map(task => task.id === taskId ? { ...task, title: newTitle } : task) })
+	}
+
+	const changeTodolistTitle = (todolistID: string, newTitle: string) => {
+		setTodolists(todolists.map(list => list.id === todolistID ? { ...list, title: newTitle } : list));
+	}
+
 	const todolistItems = todolists.length
 		? todolists.map(list => {
 			const filteredTasks = getFilteredTasks(tasks[list.id], list.filter);
@@ -112,18 +120,12 @@ const App = (): JSX.Element => {
 					addTask={addTask}
 					changeTaskStatus={changeTaskStatus}
 					changeTodolistFilter={changeTodolistFilter}
-					removeTodolist={removeTodolist} />
+					removeTodolist={removeTodolist}
+					changeTaskTitle={changeTaskTitle}
+				/>
 			)
 		})
 		: <span>Create To Do List...</span>
-
-	const changeTaskTitle = (todolistID: string, taskId: string, newTitle: string) => {
-		setTasks({ ...tasks, [todolistID]: tasks[todolistID].map(task => task.id === taskId ? { ...task, title: newTitle } : task) })
-	}
-
-	const changeTodolistTitle = (todolistID: string, newTitle: string) => {
-		setTodolists(todolists.map(list => list.id === todolistID ? { ...list, title: newTitle } : list));
-	}
 
 	return (
 		<>

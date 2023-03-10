@@ -2,12 +2,14 @@ import { ChangeEvent, FC, useState } from "react";
 
 type EditableSpanType = {
 	title: string,
-	spanClassses?: string
+	spanClassses?: string,
+	changeTitle: (newTitle: string) => void
 }
 
 export const EditableSpan: FC<EditableSpanType> = ({
 	title,
-	spanClassses
+	spanClassses,
+	changeTitle
 }) => {
 
 	const [localTitle, setLocalTitle] = useState<string>(title);
@@ -18,8 +20,10 @@ export const EditableSpan: FC<EditableSpanType> = ({
 	}
 
 	const onEditMode = () => setEditMode(true);
-	const offEditMode = () => setEditMode(false);
-
+	const offEditMode = () => {
+		setEditMode(false);
+		changeTitle(localTitle);
+	}
 	return (
 		editMode
 			? <input
