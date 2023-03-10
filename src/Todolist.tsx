@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { AddItemForm } from './AddItemForm';
 import { FilterValueType } from './App';
 import { Tasklist } from './Tasklist';
 
@@ -24,35 +25,13 @@ type TodolistType = {
 
 export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 
-	const [error, setError] = React.useState<boolean>(false);
-
-	const [title, setTitle] = React.useState('');
-	const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		error && setError(false);
-		setTitle(e.currentTarget.value);
-	}
-
-	const trimmedTitle = title.trim();
-
 	const addTask = () => {
-		if (trimmedTitle) {
-			props.addTask(props.todolistID, trimmedTitle);
-		} else {
-			setError(true);
-		}
-		setTitle('');
+
 	}
 
 	const changeFilter = (filter: FilterValueType) => () => props.changeTodolistFilter(props.todolistID, filter);
 
 	const deleteList = () => props.removeTodolist(props.todolistID);
-
-	const maxLengthTitle: number = 15;
-	const isTitleTooLong = trimmedTitle.length > maxLengthTitle;
-	const inputErrorClasses = `input ${error || isTitleTooLong ? 'errorInput' : ''}`;
-	const titleTooLongMessage = isTitleTooLong && <div className='errorMessage'> Your title is too long...</div>;
-	const titleIsRequiredMessage = error && <div className='errorMessage'> Title is required...</div>;
-	const isDisabled = !title.length || isTitleTooLong;
 
 	const filterAllStyles = `filterButton ${props.filter === 'all' ? 'filterAll' : ''}`;
 	const filterActiveStyles = `filterButton ${props.filter === 'active' ? 'filterActive' : ''}`;
@@ -67,19 +46,7 @@ export const Todolist: React.FC<TodolistType> = (props): JSX.Element => {
 					className='deleteTodolist'
 					onClick={deleteList}></button>
 			</div >
-			<div className='inputGroup'>
-				<input
-					value={title}
-					onChange={onChangeInputHandler}
-					className={inputErrorClasses}
-					placeholder={'Enter task title...'} />
-				<button
-					onClick={addTask}
-					className='addTaskButton'
-					disabled={isDisabled}>+</button>
-				{titleTooLongMessage}
-				{titleIsRequiredMessage}
-			</div>
+			<AddItemForm callBack={() => { }} />
 			<Tasklist
 				tasks={props.tasks}
 				todolistID={props.todolistID}

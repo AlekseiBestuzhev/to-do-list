@@ -14,6 +14,8 @@ button {
 .App {
 	padding: 30px;
 	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 }
 
 .App>div {
@@ -21,8 +23,6 @@ button {
 }
 
 .todolistBlock {
-	display: flex;
-	flex-direction: column;
 	padding: 15px;
 	border: 3px solid #3e59e4;
 	border-radius: 5px;
@@ -127,7 +127,7 @@ button {
 
 .filterButton:active,
 .addTaskButton:active {
-	color:#000;
+	color: #000;
 }
 
 .addTaskButton:disabled:hover {
@@ -136,7 +136,7 @@ button {
 }
 
 .addTaskButton:disabled:active {
-color: #fff;
+	color: #fff;
 }
 
 .filterAll {
